@@ -20,10 +20,10 @@ Route::get('userdata', 'API\UserController@index');
 
 
 
-Route::post('create_task', 'API\TbTasksController@store');
-Route::get('see_task/{id}', 'API\TbTasksController@show');
-Route::post('update_task/{id_task}', 'API\TbTasksController@update');
-Route::delete('delete_task/{id_task}', 'API\TbTasksController@destroy');
+Route::post('buat_transaksi', 'API\TransaksiController@store');
+Route::get('lihat_transaksi/{id}', 'API\TransaksiController@show');
+Route::post('update_transaksi/{id}', 'API\TransaksiController@update');
+Route::delete('delete_transaksi/{id}', 'API\TransaksiController@destroy');
 
 
 Route::group(['middleware' => 'auth:api'], function(){

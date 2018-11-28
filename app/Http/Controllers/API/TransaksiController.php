@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\API;
+use App\Http\Controllers\Controller;
 use App\transaksi;
 use Illuminate\Http\Request;
+use App\User;
+use Validator;
 
 class TransaksiController extends Controller
 {
@@ -35,7 +37,18 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id_kategori' => 'required',
+            'id_penyimpanan' => 'required',
+            'tanggal'=> 'required',
+            'catatan' => 'required|date',
+            'jumlah' => 'required',
+        ]);
+
+        $input = $request->all();
+          $data_transaksi = transaksi::create($input);
+
+        return response()->json(['buatTransaksi'=>$data_transaksi]);
     }
 
     /**
