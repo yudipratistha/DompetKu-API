@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class transaksi extends Model
+class Transaksi extends Model
 {
     protected $fillable = [
-        'id', 'id_kategori', 'id_penyimpanan', 'tipe', 'tanggal', 'catatan', 'jumlah'
+        'id', 'id_user', 'id_kategori', 'id_penyimpanan', 'tipe', 'tanggal', 'catatan', 'jumlah'
     ];
 
     public function user(){
