@@ -41,14 +41,13 @@ class TransaksiController extends Controller
         $validator = Validator::make($request->all(), [
             'id_user' => 'required',
             'id_kategori' => 'required',
-            'id_penyimpanan' => 'required',
-            'tanggal'=> 'required',
-            'catatan' => 'required|date',
+            'tanggal'=> 'required|date',
+            'catatan' => 'required',
             'jumlah' => 'required',
         ]);
 
         $input = $request->all();
-        $data_transaksi = transaksi::create($input);
+        $data_transaksi = Transaksi::create($input);
 
         return response()->json(['buatTransaksi'=>$data_transaksi]);
     }
@@ -61,7 +60,7 @@ class TransaksiController extends Controller
      */
     public function show($id)
     {
-        $data_transaksi = transaksi::where('id_user','=', $id)->get();
+        $data_transaksi = Transaksi::where('id_user','=', $id)->get();
         return response()->json(['lihatTransaksi'=>$data_transaksi]);
     }
 
@@ -88,18 +87,18 @@ class TransaksiController extends Controller
         $validator = Validator::make($request->all(), [
             'id_user' => 'required',
             'id_kategori' => 'required',
-            'id_penyimpanan' => 'required',
             'tanggal'=> 'required',
             'catatan' => 'required|date',
             'jumlah' => 'required',
         ]);
 
-        $data_transaksi = transaksi::where('id','=', $transaksi)->first();
+        $data_transaksi = Transaksi::where('id','=', $transaksi)->first();
         $data_transaksi->id_kategori = $request->id_kategori;
-        $data_transaksi->id_penyimpanan = $request->id_penyimpanan;
         $data_transaksi->tanggal = $request->tanggal;
         $data_transaksi->catatan = $request->catatan;
         $data_transaksi->jumlah = $request->jumlah;
+        $data_transaksi->status_update = $request->status_update;
+        $data_transaksi->status_delete = $request->status_delete;
 
         $data_transaksi->save();
 

@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\API;
+use App\Http\Controllers\Controller;
 use App\kategori;
 use Illuminate\Http\Request;
+use App\User;
+use Validator;
 
 class KategoriController extends Controller
 {
@@ -44,9 +46,10 @@ class KategoriController extends Controller
      * @param  \App\kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function show(kategori $kategori)
+    public function show($id)
     {
-        //
+        $data_kategori = kategori::where('id_user','=', $id)->get();
+        return response()->json(['lihatKategori'=>$data_kategori]);
     }
 
     /**

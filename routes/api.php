@@ -25,6 +25,7 @@ Route::get('lihat_transaksi/{id}', 'API\TransaksiController@show');
 Route::post('update_transaksi/{id}', 'API\TransaksiController@update');
 Route::delete('delete_transaksi/{id}', 'API\TransaksiController@destroy');
 
+Route::get('lihat_kategori/{id}', 'API\KategoriController@show');
 
 Route::group(['middleware' => 'auth:api'], function(){
 Route::post('details', 'API\UserController@details');

@@ -32,4 +32,8 @@ class User extends Authenticatable
     public function transaksi(){
       return $this->hashMany('App\transaksi');
     }
+
+    public function kategori(){
+        return $this->hashMany('App\kategori');
+      }
 }
